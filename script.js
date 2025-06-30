@@ -73,3 +73,13 @@ if (rsvpForm) {
     this.reset();
   });
 }
+
+// Auto fullscreen saat user klik pertama kali di halaman (jika belum fullscreen)
+document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("click", () => {
+    const elem = document.documentElement;
+    if (!document.fullscreenElement && elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }
+  }, { once: true });
+});
