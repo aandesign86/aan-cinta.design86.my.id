@@ -92,7 +92,7 @@ section {
   position: relative;
   overflow-x: clip;
   animation: fadeUp 1s ease-in-out;
-  min-height: 98vh;
+  height: 95vh;
 }
 
 /* === Typography === */
@@ -126,8 +126,8 @@ section {
 }
 
 .pojok-kiri-bawah {
-  bottom: 25px;
-  left: -28px;
+  bottom: -5px;
+  left: -20px;
   rotate: 190deg;
 }
 
@@ -137,9 +137,9 @@ section {
 }
 
 .pojok-kiri-bawah2 {
-  bottom: 40px;
+  bottom: -5px;
   left: -20px;
-  rotate: 170deg;
+  rotate: 160deg;
 }
 
 @keyframes goyang {
