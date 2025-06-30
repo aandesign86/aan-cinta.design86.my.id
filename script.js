@@ -53,13 +53,15 @@ function scrollToSection(id) {
   }
 }
 
-// Tampilkan nama tamu dari URL (?to=Nama+Tamu)
-const urlParams = new URLSearchParams(window.location.search);
-const namaTamu = urlParams.get("to");
-if (namaTamu) {
-  const elemenTamu = document.querySelectorAll(".tamu");
-  elemenTamu.forEach(el => el.textContent = decodeURIComponent(namaTamu.replace(/\+/g, ' ')));
-}
+// Ambil parameter dari URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const namaTamu = urlParams.get('to');
+
+  // Masukkan ke elemen nama tamu jika ada
+  if (namaTamu) {
+    const elemenNama = document.getElementById("namaTamu");
+    elemenNama.textContent = decodeURIComponent(namaTamu).replace(/\+/g, ' ');
+  }
 
 // Event submit RSVP
 const rsvpForm = document.getElementById("rsvp-form");
@@ -83,3 +85,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, { once: true });
 });
+
+// Tanggal target akad nikah (tahun, bulan (0-11), tanggal, jam, menit)
+  const akadDate = new Date(2030, 11, 31, 9, 0, 0).getTime(); // 31 Desember 2030, 09:00 WIB
+
+  const countdownAkad = () => {
+    const now = new Date().getTime();
+    const distance = akadDate - now;
+
+    if (distance < 0) {
+      document.getElementById("countdown").innerHTML = "<p>Acara telah berlangsung</p>";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("days").textContent = days.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+  };
+
+  setInterval(countdownAkad, 1000);
