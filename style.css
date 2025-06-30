@@ -92,7 +92,7 @@ section {
   position: relative;
   overflow-x: clip;
   animation: fadeUp 1s ease-in-out;
-  min-height: 97vh;
+  min-height: 98vh;
 }
 
 /* === Typography === */
