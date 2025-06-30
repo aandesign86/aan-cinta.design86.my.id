@@ -2,6 +2,16 @@ function bukaUndangan() {
   const cover = document.getElementById("cover");
   const sections = document.querySelectorAll("section");
 
+  // Minta layar penuh (fullscreen)
+  const elem = document.documentElement;
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { // Safari
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { // IE11
+    elem.msRequestFullscreen();
+  }
+
   // Tambahkan animasi keluar pada cover
   cover.classList.add("slide-out");
 
@@ -17,10 +27,9 @@ function bukaUndangan() {
       }
     });
 
-	// Tampilkan bottom navbar setelah cover dibuka
-	const bottomNav = document.getElementById("bottomNav");
-	if (bottomNav) bottomNav.style.display = "flex";
-
+    // Tampilkan bottom navbar setelah cover dibuka
+    const bottomNav = document.getElementById("bottomNav");
+    if (bottomNav) bottomNav.style.display = "flex";
 
     // Scroll smooth ke cover-section sebagai awal
     const firstSection = document.getElementById("cover-section");
