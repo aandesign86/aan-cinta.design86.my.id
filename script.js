@@ -13,39 +13,51 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function bukaUndangan() {
-  // Sembunyikan halaman cover
-  document.getElementById("cover").classList.add("hidden");
+  const cover = document.getElementById("cover");
 
-  // Tampilkan semua section tersembunyi
-  document.querySelectorAll("section.hidden").forEach(section => {
-    section.classList.remove("hidden");
-    section.classList.add("visible");
-  });
+  // Tambahkan animasi fade-out jika ada
+  cover.classList.add("fade-out");
 
-  // Tampilkan bottom navbar
-  const bottomNav = document.getElementById("bottomNav");
-  if (bottomNav) {
-    bottomNav.classList.remove("hidden");
-    bottomNav.classList.add("visible");
-  }
+  // Setelah animasi selesai (sesuaikan durasi dengan CSS), sembunyikan sepenuhnya
+  setTimeout(() => {
+    cover.classList.add("hidden");
+    cover.style.display = "none"; // <- ini penting agar benar-benar tersembunyi
 
-  // Scroll ke section utama
-  document.getElementById("cover-section").scrollIntoView({ behavior: "smooth" });
+    // Hapus kunci scroll agar bisa scroll ke section lain
+    document.body.classList.remove("lock-scroll");
 
-  // Play audio
-  const audio = document.getElementById("backsound");
-  if (audio && audio.paused) {
-    audio.play().catch(() => {
-      console.log("Audio belum bisa diputar otomatis.");
+    // Tampilkan semua section tersembunyi
+    document.querySelectorAll("section.hidden").forEach(section => {
+      section.classList.remove("hidden");
+      section.classList.add("visible");
     });
-  }
 
-  // Refresh animasi AOS
-  if (typeof AOS !== 'undefined') AOS.refresh();
+    // Tampilkan bottom navbar
+    const bottomNav = document.getElementById("bottomNav");
+    if (bottomNav) {
+      bottomNav.classList.remove("hidden");
+      bottomNav.classList.add("visible");
+    }
 
-  // Tandai undangan sudah dibuka di session
-  sessionStorage.setItem("undanganDibuka", "true");
+    // Scroll ke section utama
+    document.getElementById("cover-section").scrollIntoView({ behavior: "smooth" });
+
+    // Play audio
+    const audio = document.getElementById("backsound");
+    if (audio && audio.paused) {
+      audio.play().catch(() => {
+        console.log("Audio belum bisa diputar otomatis.");
+      });
+    }
+
+    // Refresh animasi AOS
+    if (typeof AOS !== 'undefined') AOS.refresh();
+
+    // Tandai undangan sudah dibuka di session
+    sessionStorage.setItem("undanganDibuka", "true");
+  }, 600); // durasi fade-out animasi dalam milidetik (jika ada)
 }
+
 
 
 // Scroll ke section via tombol navbar
@@ -134,5 +146,4 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Hapus kunci scroll agar bisa scroll ke section lain
-document.body.classList.remove("lock-scroll");
+
