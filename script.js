@@ -1,72 +1,75 @@
-function bukaUndangan() {
-  const cover = document.getElementById("cover");
-  const sections = document.querySelectorAll("section");
+// Jika halaman direfresh, hapus status buka (agar kembali ke cover)
+window.addEventListener("beforeunload", function () {
+  sessionStorage.removeItem("undanganDibuka");
+});
 
-  // Minta layar penuh (fullscreen)
-  const elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { // Safari
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { // IE11
-    elem.msRequestFullscreen();
+document.addEventListener("DOMContentLoaded", function () {
+  // Jika belum dibuka, tampilkan halaman cover (default)
+  const sudahBuka = sessionStorage.getItem("undanganDibuka");
+  if (!sudahBuka) {
+    // Jangan apa-apa, tetap di halaman cover
+    document.getElementById("cover").classList.remove("hidden");
+  }
+});
+
+function bukaUndangan() {
+  // Sembunyikan halaman cover
+  document.getElementById("cover").classList.add("hidden");
+
+  // Tampilkan semua section tersembunyi
+  document.querySelectorAll("section.hidden").forEach(section => {
+    section.classList.remove("hidden");
+    section.classList.add("visible");
+  });
+
+  // Tampilkan bottom navbar
+  const bottomNav = document.getElementById("bottomNav");
+  if (bottomNav) {
+    bottomNav.classList.remove("hidden");
+    bottomNav.classList.add("visible");
   }
 
-  // Tambahkan animasi keluar pada cover
-  cover.classList.add("slide-out");
+  // Scroll ke section utama
+  document.getElementById("cover-section").scrollIntoView({ behavior: "smooth" });
 
-  // Setelah animasi keluar selesai
-  setTimeout(() => {
-    cover.style.display = "none";
-
-    // Tampilkan semua section setelah cover
-    sections.forEach(section => {
-      if (section.id !== "cover") {
-        section.style.display = "block";
-        section.classList.add("show");
-      }
+  // Play audio
+  const audio = document.getElementById("backsound");
+  if (audio && audio.paused) {
+    audio.play().catch(() => {
+      console.log("Audio belum bisa diputar otomatis.");
     });
+  }
 
-    // Tampilkan bottom navbar setelah cover dibuka
-    const bottomNav = document.getElementById("bottomNav");
-    if (bottomNav) bottomNav.style.display = "flex";
+  // Refresh animasi AOS
+  if (typeof AOS !== 'undefined') AOS.refresh();
 
-    // Scroll smooth ke cover-section sebagai awal
-    const firstSection = document.getElementById("cover-section");
-    if (firstSection) {
-      firstSection.scrollIntoView({ behavior: "smooth" });
-    }
-
-    // Mainkan backsound jika ada
-    const backsound = document.getElementById("backsound");
-    if (backsound) backsound.play();
-
-  }, 800); // waktu sesuai animasi slide-out
+  // Tandai undangan sudah dibuka di session
+  sessionStorage.setItem("undanganDibuka", "true");
 }
 
-// Fungsi scroll ke section tertentu (jika ingin dipakai tombol navigasi)
+
+// Scroll ke section via tombol navbar
 function scrollToSection(id) {
   const section = document.getElementById(id);
   if (section) {
     section.scrollIntoView({ behavior: "smooth" });
-    section.classList.add("show");
   }
 }
 
-// Ambil parameter dari URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const namaTamu = urlParams.get('to');
-
-  // Masukkan ke elemen nama tamu jika ada
-  if (namaTamu) {
-    const elemenNama = document.getElementById("namaTamu");
+// Masukkan nama tamu dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const namaTamu = urlParams.get('to');
+if (namaTamu) {
+  const elemenNama = document.getElementById("namaTamu");
+  if (elemenNama) {
     elemenNama.textContent = decodeURIComponent(namaTamu).replace(/\+/g, ' ');
   }
+}
 
-// Event submit RSVP
+// Form RSVP
 const rsvpForm = document.getElementById("rsvp-form");
 if (rsvpForm) {
-  rsvpForm.addEventListener("submit", function(event) {
+  rsvpForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const nama = this.nama.value;
     const kehadiran = this.kehadiran.value;
@@ -76,7 +79,7 @@ if (rsvpForm) {
   });
 }
 
-// Auto fullscreen saat user klik pertama kali di halaman (jika belum fullscreen)
+// Auto fullscreen saat pertama klik
 document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", () => {
     const elem = document.documentElement;
@@ -86,27 +89,50 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { once: true });
 });
 
-// Tanggal target akad nikah (tahun, bulan (0-11), tanggal, jam, menit)
-  const akadDate = new Date(2030, 11, 31, 9, 0, 0).getTime(); // 31 Desember 2030, 09:00 WIB
+// Countdown Akad
+const akadDate = new Date(2030, 11, 31, 9, 0, 0).getTime(); // 31 Desember 2030
+const countdownAkad = () => {
+  const now = new Date().getTime();
+  const distance = akadDate - now;
 
-  const countdownAkad = () => {
-    const now = new Date().getTime();
-    const distance = akadDate - now;
+  if (distance < 0) {
+    document.getElementById("countdown").innerHTML = "<p>Acara telah berlangsung</p>";
+    return;
+  }
 
-    if (distance < 0) {
-      document.getElementById("countdown").innerHTML = "<p>Acara telah berlangsung</p>";
-      return;
-    }
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  document.getElementById("days").textContent = String(days).padStart(2, '0');
+  document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+};
 
-    document.getElementById("days").textContent = days.toString().padStart(2, '0');
-    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
-  };
+setInterval(countdownAkad, 1000);
 
-  setInterval(countdownAkad, 1000);
+// Inisialisasi AOS
+if (typeof AOS !== 'undefined') {
+  AOS.init({
+    once: false,
+    duration: 800,
+    delay: 100,
+  });
+}
+//LOCK SCROLL COVER//
+document.addEventListener("DOMContentLoaded", function () {
+  window.scrollTo(0, 0); // Pastikan scroll di atas
+  // Cegah scroll saat masih di cover
+  document.body.classList.add("lock-scroll");
+
+  // Jika undangan belum dibuka, biarkan di halaman cover
+  const sudahBuka = sessionStorage.getItem("undanganDibuka");
+  if (!sudahBuka) {
+    document.getElementById("cover").classList.remove("hidden");
+  }
+});
+
+// Hapus kunci scroll agar bisa scroll ke section lain
+document.body.classList.remove("lock-scroll");
