@@ -91,7 +91,6 @@ section {
   margin: auto;
   position: relative;
   overflow: hidden;
-  animation: fadeUp 1s ease-in-out;
   min-height: 100vh;
 }
 
@@ -179,28 +178,6 @@ section {
 @keyframes goyang {
   0%, 100% { transform: rotate(0deg) scale(1); }
   50% { transform: rotate(5deg) scale(1.05); }
-}
-
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideOutDown {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
 }
 
 .cover.slide-out {
@@ -327,4 +304,31 @@ section#penutup {
 .countdown-box small {
   font-size: 0.75rem;
   color: #555;
+}
+
+/* Sembunyikan dengan transisi halus */
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.6s ease;
+}
+
+/* Tampilkan kembali dengan transisi halus */
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  height: auto;
+}
+
+.aos-init {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.aos-animate {
+  opacity: 1;
+}
+body.lock-scroll {
+  overflow: hidden;
 }
