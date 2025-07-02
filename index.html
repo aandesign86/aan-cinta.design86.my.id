@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
   <!-- Audio Backsound -->
@@ -16,23 +17,23 @@
 
   <!-- Halaman Cover -->
   <section class="cover" id="cover">
-    <div class="cover-content">
-      <h4 class="subtitle">Undangan Pernikahan</h4>
-      <img src="pengantin.png" alt="Ilustrasi Pengantin" class="ilustrasi"/>
-      <h3 class="pasangan" style="margin-top: 0px; margin-bottom: 0px;">Aan &amp; Cinta</h3>
-      <p class="sapaan">Bapak/Ibu/Saudara/i</p>
-      <h2 class="tamu" id="namaTamu">Nama Tamu</h2>
-      <p class="kalimat">
-        Tanpa mengurangi rasa hormat, kami bermaksud mengundang Anda untuk menghadiri acara pernikahan kami.
-      </p>
-      <button onclick="bukaUndangan()" class="btn-buka">💌 Buka Undangan</button>
-      <p class="catatan">* Mohon maaf apabila ada kesalahan penulisan nama/gelar</p>
-    </div>
-  </section>
+  <div class="cover-content">
+    <h4 class="subtitle" data-aos="fade-down" data-aos-delay="100">Undangan Pernikahan</h4>
+    <img src="pengantin.png" alt="Ilustrasi Pengantin" class="ilustrasi" data-aos="zoom-in" data-aos-delay="200" />
+    <h3 class="pasangan" style="margin-top: 0px; margin-bottom: 0px;" data-aos="fade-up" data-aos-delay="300">Aan &amp; Cinta</h3>
+    <p class="sapaan" data-aos="fade" data-aos-delay="400">Bapak/Ibu/Saudara/i</p>
+    <h2 class="tamu" id="namaTamu" data-aos="fade-up" data-aos-delay="500">Nama Tamu</h2>
+    <p class="kalimat" data-aos="fade-up" data-aos-delay="600">
+      Tanpa mengurangi rasa hormat, kami bermaksud mengundang Anda untuk menghadiri acara pernikahan kami.
+    </p>
+    <button onclick="bukaUndangan()" class="btn-buka" data-aos="zoom-in" data-aos-delay="700">💌 Buka Undangan</button>
+    <p class="catatan" data-aos="fade" data-aos-delay="800">* Mohon maaf apabila ada kesalahan penulisan nama/gelar</p>
+  </div>
+</section>
 
   <!-- Konten Undangan -->
 <!-- Bottom Navbar -->
-<nav class="bottom-navbar" id="bottomNav" style="display: none;">
+<nav class="bottom-navbar hidden" id="bottomNav">
   <button onclick="scrollToSection('cover-section')">
     <i class="fas fa-home"></i>
   </button>
@@ -54,55 +55,65 @@
 </nav>
   
   <!-- Section Cover atas -->
-  <section id="cover-section"style="display:none">
+  <section id="cover-section" class="hidden">
   <div class="cover-container">
-<!-- Bunga pojok atas kanan -->
-<img src="gambar/bunga-pojok2.png" alt="Bunga Kanan Atas2" class="bunga-pojok2 pojok-kanan-atas2">
-<img src="gambar/bunga-pojok.png" alt="Bunga Kanan Atas" class="bunga-pojok pojok-kanan-atas">
-<!-- Bunga pojok bawah kiri -->
-<img src="gambar/bunga-pojok2.png" alt="Bunga Kiri Bawah2" class="bunga-pojok2 pojok-kiri-bawah2">
-<img src="gambar/bunga-pojok.png" alt="Bunga Kiri Bawah" class="bunga-pojok pojok-kiri-bawah">
-    <p class="wedding-of">The Wedding Of</p>
-    <h1 class="nama">Aan Kunaevi</h1>
-    <p class="dan">dan</p>
-    <h1 class="nama">Cinta Setia Mentari</h1>
-    <p class="tanggal">SELASA<br><span class="tgl-bold">31 | 12 | 2030</span></p>
-    <img src="gambar/bunga-tengah.png" alt="Bunga Tengah" class="bunga-tengah"/>
-    <div class="tamu-container">
+    <!-- Bunga pojok atas kanan -->
+    <img src="gambar/bunga-pojok2.png" alt="Bunga Kanan Atas2" class="bunga-pojok2 pojok-kanan-atas2" data-aos="fade-down" data-aos-delay="100">
+    <img src="gambar/bunga-pojok.png" alt="Bunga Kanan Atas" class="bunga-pojok pojok-kanan-atas" data-aos="fade-down" data-aos-delay="200">
+    <!-- Bunga pojok bawah kiri -->
+    <img src="gambar/bunga-pojok2.png" alt="Bunga Kiri Bawah2" class="bunga-pojok2 pojok-kiri-bawah2" data-aos="fade-up" data-aos-delay="300">
+    <img src="gambar/bunga-pojok.png" alt="Bunga Kiri Bawah" class="bunga-pojok pojok-kiri-bawah" data-aos="fade-up" data-aos-delay="400">
+
+    <p class="wedding-of" data-aos="zoom-in" data-aos-delay="500">The Wedding Of</p>
+    <h1 class="nama" data-aos="fade-up" data-aos-delay="600">Aan Kunaevi</h1>
+    <p class="dan" data-aos="fade" data-aos-delay="700">dan</p>
+    <h1 class="nama" data-aos="fade-up" data-aos-delay="800">Cinta Setia Mentari</h1>
+    <p class="tanggal" data-aos="zoom-in" data-aos-delay="900">SELASA<br><span class="tgl-bold">31 | 12 | 2030</span></p>
+    
+    <img src="gambar/bunga-tengah.png" alt="Bunga Tengah" class="bunga-tengah" data-aos="zoom-in" data-aos-delay="1000" />
+    
+    <div class="tamu-container" data-aos="fade-up" data-aos-delay="1100">
       <p>Kepada Yth.<br>Bapak/Ibu/Saudara/i</p>
       <h2 class="tamu">Nama Tamu</h2>
       <p>Di Tempat</p>
     </div>
   </div>
   </section>
-  
+
   <!-- Section Couple -->
-<section id="couple" style="display:none">
+<section id="couple" class="hidden">
   <div class="couple-container">
-<!-- Bunga pojok atas kiri -->
-<img src="gambar/bunga-pojok4.png" alt="Bunga Kiri Atas2" class="bunga-pojok4 pojok-kiri-atas2">
-<img src="gambar/bunga-pojok3.png" alt="Bunga Kiri Atas" class="bunga-pojok3 pojok-kiri-atas">
-<!-- Bunga pojok bawah kanan -->
-<img src="gambar/bunga-pojok4.png" alt="Bunga Kanan Bawah2" class="bunga-pojok4 pojok-kanan-bawah2">
-<img src="gambar/bunga-pojok3.png" alt="Bunga Kanan Bawah" class="bunga-pojok3 pojok-kanan-bawah">
-    <h2 class="judul-section">Mempelai</h2>
+    <!-- Bunga pojok atas kiri -->
+    <img src="gambar/bunga-pojok4.png" alt="Bunga Kiri Atas2" class="bunga-pojok4 pojok-kiri-atas2" data-aos="fade-down" data-aos-delay="100">
+    <img src="gambar/bunga-pojok3.png" alt="Bunga Kiri Atas" class="bunga-pojok3 pojok-kiri-atas" data-aos="fade-down" data-aos-delay="200">
+    
+    <!-- Bunga pojok bawah kanan -->
+    <img src="gambar/bunga-pojok4.png" alt="Bunga Kanan Bawah2" class="bunga-pojok4 pojok-kanan-bawah2" data-aos="fade-up" data-aos-delay="300">
+    <img src="gambar/bunga-pojok3.png" alt="Bunga Kanan Bawah" class="bunga-pojok3 pojok-kanan-bawah" data-aos="fade-up" data-aos-delay="400">
+
+    <!-- Judul Section -->
+    <h2 class="judul-section" data-aos="zoom-in" data-aos-delay="500">Mempelai</h2>
+
     <div class="mempelai">
-      <div class="mempelai-pria">
+      <!-- Mempelai Pria -->
+      <div class="mempelai-pria" data-aos="fade-right" data-aos-delay="600">
         <img src="gambar/damar.png" alt="Foto Damar" class="foto-mempelai" />
-        <h3>Aan Kunaevi</h3>
-        <p>Putra dari Bapak Daswa &<br>Ibu Bilis</p>
+        <h3 data-aos="fade-up" data-aos-delay="700">Aan Kunaevi</h3>
+        <p data-aos="fade-up" data-aos-delay="800">Putra dari Bapak Daswa &<br>Ibu Bilis</p>
       </div>
-      <div class="mempelai-wanita">
+
+      <!-- Mempelai Wanita -->
+      <div class="mempelai-wanita" data-aos="fade-left" data-aos-delay="600">
         <img src="gambar/indah.png" alt="Foto Indah" class="foto-mempelai" />
-        <h3>Cinta Setia Mentari</h3>
-        <p>Putri dari Bapak Rastakim &<br>Ibu Kadminih</p>
+        <h3 data-aos="fade-up" data-aos-delay="700">Cinta Setia Mentari</h3>
+        <p data-aos="fade-up" data-aos-delay="800">Putri dari Bapak Rastakim &<br>Ibu Kadminih</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Section Akad & Resepsi -->
-<section id="acara" style="display:none">
+<section id="acara" class="hidden"
   <div class="acara-container">
 <!-- Bunga pojok atas kanan -->
 <img src="gambar/bunga-pojok2.png" alt="Bunga Kanan Atas2" class="bunga-pojok2 pojok-kanan-atas2">
@@ -142,7 +153,7 @@
 </section>
 
 <!-- Section Galeri Foto -->
-<section id="galeri" style="display:none">
+<section id="galeri" class="hidden">
   <div class="galeri-container">
 <!-- Bunga pojok atas kiri -->
 <img src="gambar/bunga-pojok4.png" alt="Bunga Kiri Atas2" class="bunga-pojok4 pojok-kiri-atas2">
@@ -161,7 +172,7 @@
 </section>
 
 <!-- Tambahan Section Kata Pembuka / Quotes -->
-<section id="quotes" style="display:none">
+<section id="quotes" class="hidden">
   <div class="quotes-container">
 <!-- Bunga pojok atas kanan -->
 <img src="gambar/bunga-pojok2.png" alt="Bunga Kanan Atas2" class="bunga-pojok2 pojok-kanan-atas2">
@@ -178,7 +189,7 @@
 </section>
 
 <!-- Section RSVP -->
-<section id="rsvp" style="display:none">
+<section id="rsvp" class="hidden">
   <div class="rsvp-container">
 <!-- Bunga pojok atas kiri -->
 <img src="gambar/bunga-pojok4.png" alt="Bunga Kiri Atas2" class="bunga-pojok4 pojok-kiri-atas2">
@@ -201,7 +212,7 @@
 </section>
 
 <!-- Section Ucapan Doa -->
-<section id="ucapan" style="display:none">
+<section id="ucapan" class="hidden">
   <div class="ucapan-container">
 <!-- Bunga pojok atas kanan -->
 <img src="gambar/bunga-pojok2.png" alt="Bunga Kanan Atas2" class="bunga-pojok2 pojok-kanan-atas2">
@@ -218,7 +229,7 @@
 </section>
 
 <!-- Section Kirim Hadiah -->
-<section id="gift" style="display:none">
+<section id="gift" class="hidden">
   <div class="gift-container">
 <!-- Bunga pojok atas kiri -->
 <img src="gambar/bunga-pojok4.png" alt="Bunga Kiri Atas2" class="bunga-pojok4 pojok-kiri-atas2">
@@ -236,7 +247,7 @@
 </section>
 
 <!-- Tambahan Section penutup -->
-<section id="penutup" style="display:none">
+<section id="penutup" class="hidden">
   <div class="penutup-container">
 <!-- Bunga pojok atas kanan -->
 <img src="gambar/bunga-pojok2.png" alt="Bunga Kanan Atas2" class="bunga-pojok2 pojok-kanan-atas2">
@@ -253,6 +264,14 @@
 </section>
 
   <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+  AOS.init({
+    once: false, // animasi bisa berulang saat scroll
+    duration: 800,
+    delay: 100,
+  });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
